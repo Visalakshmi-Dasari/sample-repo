@@ -1,0 +1,72 @@
+{
+  "name": "tpdm-data-quality",
+  "version": "0.1.0",
+  "engines": {
+    "npm": "10"
+  },
+  "bin": {
+    "cdk-app": "src/infra/app.ts"
+  },
+  "scripts": {
+    "clean": "tsc --build --clean",
+    "build": "npm run clean",
+    "watch": "tsc -w",
+    "cdk": "cdk",
+    "synth": "cdk synth > template.yml",
+    "deploy": "cdk deploy --require-approval never",
+    "test": "jest --coverage --testPathIgnorePatterns='functional'",
+    "test:functional": "playwright test",
+    "test:affected": "jest --bail --findRelatedTests",
+    "lint": "eslint '**/*.ts' --fix",
+    "install-peerdeps": "npx install-peerdeps @lmig/swa-cdk-core -D --registry https://packages.lmig.com/api/npm/npm",
+    "prettier": "prettier --check '**/*.{mjs,js,ts}'",
+    "prettier:fix": "prettier --write '**/*.{mjs,js,ts}' --list-different",
+    "prepare": "ts-patch install && typia patch && node ./.husky/install.mjs",
+    "pre-commit-hook": "npm run build && npm run test && npm run prettier:fix"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@lmig/swa-cdk-core": "^4.19.2",
+    "@lmig/tpd-cdk-core": "1.0.3",
+    "@lmig/tpdp-constructs": "^5.0.7",
+    "@lmig/tpdp-lib": "^5.0.0",
+    "@playwright/test": "^1.57.0",
+    "@types/aws-lambda": "^8.10.159",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^20.14.2",
+    "@typescript-eslint/eslint-plugin": "^8.50.0",
+    "aws-cdk": "^2.1034.0",
+    "copy-webpack-plugin": "^12.0.2",
+    "datadog-cdk-constructs-v2": "^3.5.1",
+    "esbuild": "^0.27.1",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "husky": "^9.1.7",
+    "jest": "^30.2.0",
+    "jest-html-reporter": "^4.3.0",
+    "jest-junit": "^16.0.0",
+    "lint-staged": "^15.2.6",
+    "prettier": "^3.7.4",
+    "ts-jest": "^29.4.6",
+    "ts-node": "^10.9.2",
+    "ts-patch": "^3.3.0",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.50.0"
+  },
+  "dependencies": {
+    "@aws-lambda-powertools/idempotency": "^2.30.2",
+    "@aws-lambda-powertools/logger": "^2.30.0",
+    "@lmig/aws-lambda-authorizer": "^1.2.2",
+    "@lmig/lm-aws-cdk": "^3.1.16",
+    "@lmig/tpdp-lib": "^5.0.0",
+    "aws-cdk-lib": "^2.237.1",
+    "axios": "^1.13.2",
+    "constructs": "^10.4.4",
+    "dotenv": "^16.4.5",
+    "kafkajs": "^2.2.4",
+    "source-map-support": "^0.5.21",
+    "typia": "^10.1.0",
+    "zod": "^4.2.1"
+  }
+}
